@@ -35,4 +35,6 @@ spring:
 mybatis:
   mapper-locations: classpath*:com/ch/example/mapper/xml/*.xml
   type-aliases-package: com.ch.example.vo
+swagger:
+  show: true
 
