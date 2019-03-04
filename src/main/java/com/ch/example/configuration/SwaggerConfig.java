@@ -1,5 +1,7 @@
 package com.ch.example.configuration;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +19,15 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
+    private static final Logger logger = LogManager.getLogger(DruidConfiguration.class);
+
     @Value("${swagger.show}")
     private boolean swaggerShow;
 
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
+        logger.debug("swagger装配开始...............");
+        return new Docket(DocumentationType.SWAGGER_12)
                 .enable(swaggerShow)
                 .apiInfo(apiInfo())
                 .select()
