@@ -32,6 +32,27 @@ spring:
     # 合并多个DruidDataSource的监控数据
     useGlobalDataSourceStat: true
     logSlowSql: true
+#redis配置
+  redis:
+    database: 1
+    port: 6379
+    host: localhost
+    password:
+    timeout: 1s
+    #lettuce redis连接池，线程安全，减少物理内存消耗
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 300ms
+        max-idle: 16
+        min-idle: 8
+#session使用redis
+#  session:
+#    store-type: redis
+#    redis:
+#      flush-mode: on_save
+#      #添加后，redis中的key为spring:session:myproject
+#      namespace: ch
 mybatis:
   mapper-locations: classpath*:com/ch/example/mapper/xml/*.xml
   type-aliases-package: com.ch.example.entity
@@ -43,6 +64,7 @@ swagger:
 logging:
   #使用log4j
   config: classpath:log4j2.xml
+
 
 
 

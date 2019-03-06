@@ -2,6 +2,8 @@ package com.ch.example.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.List;
+
 /**
  * @Author chenhao
  * @Description //TODO
@@ -13,7 +15,7 @@ public class ResponseVo<T> {
     @ApiModelProperty(value = "消息")
     private String message;
     @ApiModelProperty(value = "data对象")
-    private Object data;
+    private T data;
 
     public int getCode() {
         return code;
@@ -27,17 +29,36 @@ public class ResponseVo<T> {
     public void setMessage(String message) {
         this.message = message;
     }
-    public Object getData() {
+
+    public T getData() {
         return data;
     }
-    public void setData(Object data) {
+
+    public void setData(T data) {
         this.data = data;
     }
 
-    public ResponseVo(int code, String message, Object data) {
+    public ResponseVo() {
+
+    }
+
+    public ResponseVo(int code, String message, T data) {
         super();
         this.code = code;
         this.message = message;
         this.data = data;
+    }
+
+    public ResponseVo success(String message, T data){
+        this.code = Constants.RESPONSE_SUCCESS;
+        this.message = message;
+        this.data = data;
+        return this;
+    }
+
+    public ResponseVo fail(String message){
+        this.code = Constants.RESPONSE_FAIL;
+        this.message = message;
+        return this;
     }
 }

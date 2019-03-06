@@ -27,7 +27,7 @@ public class DruidConfiguration {
 
     @Bean
     public ServletRegistrationBean druidServlet() {
-        logger.info("init Druid Servlet Configuration............. ");
+        logger.info(" Druid装配开始...............");
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "*");

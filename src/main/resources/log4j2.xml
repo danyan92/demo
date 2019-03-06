@@ -4,7 +4,7 @@
 <configuration status="INFO">
     <!-- 全局参数 -->
     <Properties>
-        <Property name="pattern">{[ %p ] [%-d{yyyy-MM-dd HH:mm:ss}] [ LOGID:%X{logid} ] [%l] %m%n}</Property>
+        <Property name="pattern">[ %p ] [%-d{yyyy-MM-dd HH:mm:ss}] [ LOGID:%X{logid} ] [%l] %m%n</Property>
         <Property name="displayName">demo</Property>
     </Properties>
     <Appenders>

@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @Description //TODO
  * @Date 2019/3/4
  **/
-public class DemoVo extends BaseVo {
+public class DemoVo {
     @ApiModelProperty(value = "id")
     private String id;
 
