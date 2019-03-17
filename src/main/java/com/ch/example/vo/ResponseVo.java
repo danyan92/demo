@@ -2,8 +2,6 @@ package com.ch.example.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.List;
-
 /**
  * @Author chenhao
  * @Description //TODO
@@ -39,7 +37,12 @@ public class ResponseVo<T> {
     }
 
     public ResponseVo() {
+    }
 
+
+    public ResponseVo(String message, T data) {
+        this.message = message;
+        this.data = data;
     }
 
     public ResponseVo(int code, String message, T data) {
@@ -49,10 +52,8 @@ public class ResponseVo<T> {
         this.data = data;
     }
 
-    public ResponseVo success(String message, T data){
+    public ResponseVo success(){
         this.code = Constants.RESPONSE_SUCCESS;
-        this.message = message;
-        this.data = data;
         return this;
     }
 

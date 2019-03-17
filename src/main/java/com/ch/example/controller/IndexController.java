@@ -43,7 +43,7 @@ public class IndexController extends BaseController{
         try {
             List<DemoVo> result= indexService.testIndex();
             redisUtil.set("ch",result);
-            return new ResponseVo().success("成功",result);
+            return new ResponseVo("成功",result).success();
         }catch (Exception e){
             logger.error("异常"+e);
             return new ResponseVo().fail("异常");
@@ -57,7 +57,7 @@ public class IndexController extends BaseController{
         try {
             System.out.println(redisUtil.get("ch"));
             ResponsePageVo page= indexService.getPageList();
-            return new ResponseVo().success("成功",page);
+            return new ResponseVo("成功",page).success();
         }catch (Exception e){
             logger.error("异常"+e);
             return new ResponseVo().fail("异常");
@@ -68,13 +68,13 @@ public class IndexController extends BaseController{
     @GetMapping(value = "/login")
     public ResponseVo getSession() {
         request.getSession().setAttribute("username", "admin");
-        return new ResponseVo().success("成功",null);
+        return new ResponseVo("成功",null).success();
     }
 
     @GetMapping(value = "/getUserInfo")
     public ResponseVo get(HttpServletRequest request) {
         String userName = (String) request.getSession().getAttribute("username");
-        return new ResponseVo().success("成功",userName);
+        return new ResponseVo("成功",userName).success();
     }
 
 
