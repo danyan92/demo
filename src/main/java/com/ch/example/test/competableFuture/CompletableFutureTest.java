@@ -1,4 +1,4 @@
-package com.ch.example.test;
+package com.ch.example.test.competableFuture;
 
 import org.junit.Test;
 
@@ -7,13 +7,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.Supplier;
 
 /**
+ * 异步操作
  * @Author: chenhao
  * @Date: 2019/4/24 13:37
  */
-public class Test1 {
+public class CompletableFutureTest {
     @Test
     public void test1(){
 
