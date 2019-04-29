@@ -26,15 +26,45 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
     # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙，此处是filter修改的地方
-    filters: stat,wall,log4j
+    filters: stat,wall,log4j2
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     useGlobalDataSourceStat: true
     logSlowSql: true
+#redis配置
+  redis:
+    database: 1
+    port: 6379
+    host: localhost
+    password:
+    timeout: 1s
+    #lettuce redis连接池，线程安全，减少物理内存消耗
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 300ms
+        max-idle: 16
+        min-idle: 8
+#session使用redis
+#  session:
+#    store-type: redis
+#    redis:
+#      flush-mode: on_save
+#      #添加后，redis中的key为spring:session:myproject
+#      namespace: ch
 mybatis:
   mapper-locations: classpath*:com/ch/example/mapper/xml/*.xml
-  type-aliases-package: com.ch.example.vo
+  type-aliases-package: com.ch.example.entity
+  #日志输出
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
 swagger:
   show: true
+logging:
+  #使用log4j
+  config: classpath:log4j2.xml
+
+
+
 

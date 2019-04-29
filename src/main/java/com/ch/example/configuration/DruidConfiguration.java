@@ -17,17 +17,17 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Created by chenhao on 2019/2/27.
+ * @Author chenhao
  */
 @Configuration
 public class DruidConfiguration {
-    private static final Logger logger = LogManager.getLogger();
+    Logger logger = LogManager.getLogger(DruidConfiguration.class);
 
     private static final String DB_PREFIX = "spring.datasource";
 
     @Bean
     public ServletRegistrationBean druidServlet() {
-        //logger.info("init Druid Servlet Configuration ");
+        logger.info(" Druid装配开始...............");
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "*");
@@ -72,9 +72,10 @@ public class DruidConfiguration {
         private String filters;
         private String connectionProperties;
 
-        @Bean     //声明其为Bean实例
+        @Bean
         @Primary  //在同样的DataSource中，首先使用被标注的DataSource
         public DataSource dataSource() {
+            logger.debug("DataSource开始装配.............");
             DruidDataSource datasource = new DruidDataSource();
             datasource.setUrl(url);
             datasource.setUsername(username);
@@ -97,7 +98,7 @@ public class DruidConfiguration {
             try {
                 datasource.setFilters(filters);
             } catch (SQLException e) {
-                System.err.println("druid configuration initialization filter: " + e);
+                logger.error("druid configuration initialization filter: " + e);
             }
             datasource.setConnectionProperties(connectionProperties);
             return datasource;
