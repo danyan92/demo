@@ -1,5 +1,6 @@
 package com.ch.example.test.functional;
 
+
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -17,8 +18,8 @@ public class FunctionalTest {
 //        do1("1","2",(a,b)->b);
 
 
-        do2(1,2,(a,b)->a+b);
 
+        do2(1,2,(a,b)->a+b);
         do3(Arrays.asList(new String[]{"1","2","3"}),n-> System.out.println(n));
     }
 
