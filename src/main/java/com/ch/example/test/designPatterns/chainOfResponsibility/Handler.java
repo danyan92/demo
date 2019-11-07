@@ -1,4 +1,4 @@
-package com.ch.example.test.designPatterns.ChainOfResponsibility;
+package com.ch.example.test.designPatterns.chainOfResponsibility;
 
 /**
  * @Author: chenhao

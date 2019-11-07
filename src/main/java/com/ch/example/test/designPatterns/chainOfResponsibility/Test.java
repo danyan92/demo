@@ -1,4 +1,4 @@
-package com.ch.example.test.designPatterns.ChainOfResponsibility;
+package com.ch.example.test.designPatterns.chainOfResponsibility;
 
 /**
  * 设计模式 责任链
