@@ -20,16 +20,23 @@ public class RedissonAutoConfig {
     @Value("${spring.redis.port}")
     private String port;
 
-    @Value("${spring.redis.password}")
-    private String password;
+    @Value("${spring.redis.database}")
+    private int database;
+
+    @Value("${spring.redis.lettuce.pool.max-active}")
+    private int maxActive;
+
+    @Value("${spring.redis.lettuce.pool.min-idle}")
+    private int minIdle;
 
     @Bean
     public RedissonClient redissonClient() {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
-        //添加主从配置
-        //config.useMasterSlaveServers().setMasterAddress("").setPassword("").addSlaveAddress(new String[]{"",""});
+        config.useSingleServer().setAddress("http://" + host + ":" + port)
+                .setDatabase(database)
+                .setConnectionPoolSize(maxActive)
+                .setConnectionMinimumIdleSize(minIdle)
+                .setIdleConnectionTimeout(1);
         return Redisson.create(config);
     }
-
 }

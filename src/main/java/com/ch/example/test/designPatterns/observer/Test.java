@@ -1,5 +1,7 @@
 package com.ch.example.test.designPatterns.observer;
 
+import java.util.Observer;
+
 /**
  * @Author: chenhao
  * @Date: 2019/11/7 18:27

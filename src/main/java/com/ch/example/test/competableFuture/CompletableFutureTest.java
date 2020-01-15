@@ -15,39 +15,36 @@ import java.util.concurrent.*;
  */
 public class CompletableFutureTest {
     @Test
-    public void test1(){
-
+    public void test1() throws ExecutionException, InterruptedException {
         ExecutorService executorService=Executors.newFixedThreadPool(10);
 
-        CompletableFuture<Integer> completableFuture=CompletableFuture.supplyAsync(()->
+        CompletableFuture<Integer> a=CompletableFuture.supplyAsync(()->
         {
+            return 1;
+        },executorService).exceptionally(e->{
+            return 2;
+        });
+
+
+        CompletableFuture<Integer> b=CompletableFuture.supplyAsync(()->{
             try {
-                Thread.sleep(1000L);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+                Thread.sleep(2000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            return 222;
-        },executorService);
-        System.out.println("1");
-
-        CompletableFuture b=completableFuture.whenCompleteAsync((v,e)->{
-            System.out.println("b--");
+            System.out.println("b完成");
+            return 11;
         },executorService);
 
+        Integer result=a.get();
 
-        System.out.println("2");
-
-        try {
-            b.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        if(result==1){
+            b.complete(2);
+           // b.cancel(true);
         }
-
-        System.out.println("3");
+        Integer result2=b.get();
+        System.out.println(result+"-------------"+result2);
     }
-
 
     @Test
     public void test2(){

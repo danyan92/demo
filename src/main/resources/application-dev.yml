@@ -34,9 +34,9 @@ spring:
     logSlowSql: true
 #redis配置
   redis:
-    database: 1
-    port: 6379
-    host: localhost
+    database: 15
+    port: 6479
+    host: 192.168.206.99
     password:
     timeout: 1s
     #lettuce redis连接池，线程安全，减少物理内存消耗
