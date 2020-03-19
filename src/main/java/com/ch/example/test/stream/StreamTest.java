@@ -2,6 +2,7 @@ package com.ch.example.test.stream;
 
 import com.ch.example.entity.Demo;
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.*;
