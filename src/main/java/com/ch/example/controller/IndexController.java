@@ -16,8 +16,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -109,6 +113,25 @@ public class IndexController extends BaseController{
             list.add(m);
         });
         return new ResponseVo("成功",list).success();
+    }
+
+    @Autowired
+    @Qualifier("kafkaTemplate1")
+    private KafkaTemplate kafkaTemplate1;
+
+    @GetMapping(value = "/kafka")
+    public ResponseVo kafka() {
+        for(int i=1;i<=10;i++){
+            ListenableFuture<SendResult<String, String>> future = kafkaTemplate1.send("xcx-msg-dev", String.valueOf(i));
+            future.addCallback(success -> {
+                        System.out.println("success");
+                    },
+                    fail ->{
+                        System.out.println("fail");
+                    });
+        }
+
+        return new ResponseVo("成功","").success();
     }
 
 

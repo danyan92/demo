@@ -69,6 +69,24 @@ swagger:
 logging:
   #使用log4j
   config: classpath:log4j2.xml
+#kafka
+kafka1:
+  kafka:
+    bootstrap-servers: 192.168.202.20:9092,192.168.202.21:9092,192.168.202.22:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      group-id: xcx-msg-consumer
+      max-poll-records: 5
+      enable-auto-commit: false
+    app:
+      topic: xcx-msg-dev
+
+
+
 
 
 
